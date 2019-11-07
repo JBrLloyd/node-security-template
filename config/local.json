@@ -2,5 +2,6 @@
   "PORT": 8080,
   "logs": {
     "level": "debug"
-  }
+  },
+  "REDIS_URL": "redis://localhost:6379"
 }

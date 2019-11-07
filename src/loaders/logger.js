@@ -1,33 +1,29 @@
-const { createLogger, format, transports } = require('winston'),
-      config = require('config');
+const { createLogger, format, transports } = require('winston');
+const config = require('config');
 
-const transports = [];
-if (process.env.NODE_ENV !== 'development') {
-  transports.push(
-    new winston.transports.Console()
-  )
-} else {
-  transports.push(
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.cli(),
-        winston.format.splat(),
-      )
-    })
-  )
-}
-
-const logger = winston.createLogger({
+const logger = createLogger({
   level: config.logs.level,
-  format: winston.format.combine(
-    winston.format.timestamp({
+  format: format.combine(
+    format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
     }),
-    winston.format.errors({ stack: true }),
-    winston.format.splat(),
-    winston.format.json()
+    format.errors({ stack: true }),
+    format.splat(),
+    format.json()
   ),
-  transports
+  transports: [
+    new transports.File({ filename: 'wot-a-bot-error.log', level: 'error' }),
+    new transports.File({ filename: 'wot-a-bot.log' })
+  ]
 });
 
-export default logger;
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new transports.Console({
+    format: format.combine(
+      format.colorize(),
+      format.simple()
+    )
+  }));
+}
+
+module.exports = logger;
