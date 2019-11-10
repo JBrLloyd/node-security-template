@@ -1,11 +1,12 @@
 {
   "name": "wot-a-bot",
   "version": "0.1.0",
-  "main": "src/app.js",
+  "main": "app.js",
   "author": "Jackson Lloyd",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "nodemon app.js",
+    "test": "nyc mocha"
   },
   "dependencies": {
     "ajv": "^6.10.2",
@@ -19,13 +20,21 @@
     "express-session": "^1.17.0",
     "helmet": "^3.21.2",
     "hpp": "^0.2.2",
+    "mongodb": "^3.3.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "redis": "^2.8.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
     "snyk": "^1.243.0"
   }
 }
