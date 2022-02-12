@@ -9,7 +9,7 @@
     "test": "nyc mocha"
   },
   "dependencies": {
-    "ajv": "^6.10.2",
+    "ajv": "^6.12.3",
     "body-parser": "^1.19.0",
     "config": "^3.2.4",
     "connect-redis": "^4.0.3",
